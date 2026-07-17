@@ -1,0 +1,41 @@
+Algorithm for LED Resistor Value Calculator System
+
+1. Start the program.
+2. Display the program title: "LED Resistor Value Calculator System".
+3. Ask the user to enter the number of LED circuit calculations to perform.
+4. Repeat the following steps for each LED circuit:
+a. Prompt the user to enter:
+
+●LED name
+●Supply voltage (Vs)
+●Forward voltage (Vf)
+●LED current (If) in milliamperes (mA)
+b. Validate the inputs:
+●Supply voltage must be greater than 0.
+●Forward voltage must be greater than 0.
+●Supply voltage must be greater than forward voltage.
+●LED current must be greater than 0.
+●If any input is invalid, display an error message and ask the user to enter the values again.
+c. Convert LED current from milliamperes to amperes:
+I= current/1000
+d. Calculate the resistor value:
+R= Vs-Vf /I
+e. Calculate the resistor power:
+P=(Vs-Vf)×I
+f. Determine the design status:
+If all inputs are valid, display ●"Design is Safe".
+●Otherwise, display "Design is Invalid".
+g. Display:
+●LED name
+●Supply voltage
+●Forward voltage
+●LED current (mA and A)
+●Calculated resistor value (Ω)
+●Calculated resistor power (W)
+●Design status
+h. Save the calculation results to a text file.
+
+5. End the loop after all LED circuits have been processed.
+Display a message: "Report saved successfully."
+
+6. End the program.
