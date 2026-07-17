@@ -1,0 +1,58 @@
+BEGIN PROGRAMME
+
+OPEN "led_resistor_report.txt" FOR writing
+
+DISPLAY "===== LED RESISTOR VALUE CALCULATOR SYSTEM ====="
+
+REPEAT
+
+    INPUT LED Name
+    INPUT Supply Voltage (Vs)
+    INPUT Forward Voltage (Vf)
+    INPUT LED Current (I) in milliamperes (mA)
+
+    IF Vs <= 0 OR Vf <= 0 OR I <= 0 THEN
+        DISPLAY "Invalid input. Values must be greater than zero."
+        CONTINUE
+    ENDIF
+
+    IF Vf >= Vs THEN
+        DISPLAY "Invalid circuit. Forward voltage must be less than supply voltage."
+        CONTINUE
+    ENDIF
+    Convert current from milliamperes to Amperes
+    I = Current * 1000
+
+    SET Resistor = (Vs - Vf) / I
+
+    SET Power = I * I * Resistor
+
+    IF Resistor <= 0 THEN
+        Status = "INVALID"
+    ELSE IF Power > 0.25 THEN
+        Status = "WARNING: Use a resistor with a higher power rating."
+    ELSE
+        Status = "ACCEPTED"
+    ENDIF
+
+    DISPLAY "------------------------------------"
+    DISPLAY "LED Name: ", LED Name
+    DISPLAY "Supply Voltage: ", Vs, " V"
+    DISPLAY "Forward Voltage: ", Vf, " V"
+    DISPLAY "LED Current: ", I, " A"
+    DISPLAY "Recommended Resistor: ", Resistor, " Ohms"
+    DISPLAY "Minimum Power Rating: ", Power, " Watts"
+    DISPLAY "Circuit Status: ", Status
+    DISPLAY "------------------------------------"
+
+    WRITE all report details to "led_resistor_report.txt"
+
+    INPUT "Do you want to calculate another LED? (Y/N): ", Choice
+
+UNTIL Choice = 'N' OR Choice = 'n'
+
+CLOSE "led_resistor_report.txt"
+
+DISPLAY "Report saved successfully."
+
+END
